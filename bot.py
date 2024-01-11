@@ -98,8 +98,6 @@ def viewTeacher(call):
     bot.delete_message(call.message.chat.id, call.message.message_id)
     teacher_id = int(call.data.split()[1])
     teacher = Teachers.select().where(Teachers.id == teacher_id)[0]
-    c = 0
-    temp = ""
     lessons = [lesson.lesson for lesson in TeachLessons.select().where((TeachLessons.teacher == teacher))]
     lessons = [lesson.name for lesson in lessons if not lesson.hidden]
     l = "\n".join(lessons)
